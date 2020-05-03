@@ -1,0 +1,56 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" loaded="pageLoaded"
+      xmlns:FAB="@nstudio/nativescript-floatingactionbutton"
+      xmlns:CheckBox="@nstudio/nativescript-checkbox"> 
+<Tabs selectedIndex="0">
+    <TabStrip>
+        <TabStripItem>
+            <Label [text]="numberDoing+' Tasks'" width="100%" height="50%"></Label>           
+        </TabStripItem>
+    <TabStripItem > 
+    <Label height="50%" width="100%" [text]="'Done '+numberDone"></Label>
+        </TabStripItem>        
+    </TabStrip>
+    <TabContentItem>      
+<StackLayout
+ orientation="vertical">
+    <GridLayout height="10%" width="100%" rows="*" columns="*,*,*,*">
+        <TextField id="txtName" hint="Task Name" row="0" col="0" colSpan="3"></TextField>
+        <Button text="+" row="0" col="4" (tap)="addTask($event)"></Button>
+    </GridLayout> 
+    <GridLayout rows="auto, *"> 
+        <ListView row="1" [items]="Tasks" id="listView" >
+            <ng-template let-item="item" >
+                <StackLayout orientation="horizontal" >
+                    <CheckBox:CheckBox [id]="item._id" width="40"  [checked]="item.Status" (tap)="finishTask($event,item)" (checkedChange)="onChangeChecked($event,item)" ></CheckBox:CheckBox>
+                <StackLayout (tap)="showEditTask($event,item)"  width="100%" height="100%">
+                    <Label  [style]="(item.Priority=='urgent')?'color:red':((item.Priority=='normal')?'color:black':((item.Priority=='hight')?'color:chocolate':((item.Priority=='low')?'color:blue':'color:black')))" [text]="item.Name"></Label>
+                    <Label  [text]="item.Date + (item.Time?'  '+item.Time:'')" [visibility]="(item.Date===undefined || item.Date===null || item.Date==='')?'collapse':'visible'"></Label>
+                </StackLayout>
+            </StackLayout>
+            </ng-template>
+        </ListView> 
+    <FAB:fab
+    row="1"
+     (tap)="showAddTask()" 
+     icon="res://floating_add_button"
+     rippleColor="#f1f1f1" 
+     width="48"
+     height="48"
+     swipeAnimation="slideDown"
+     hideOnSwipeOfView="listView"
+     style="padding:0;margin:10;horizontal-align:right;vertical-align:bottom;"></FAB:fab>
+  </GridLayout>
+</StackLayout>
+    </TabContentItem>
+    <TabContentItem>
+        <ListView row="1" [items]="doneTasks" id="listView1" >
+            <ng-template let-item="item" >
+                <StackLayout orientation="horizontal" >
+                    <CheckBox:CheckBox [id]="item._id" width="40"  [checked]="item.Status" (tap)="goToDo($event,item)" (checkedChange)="onChangeChecked($event,item)"></CheckBox:CheckBox>
+                    <Label  width="100%" height="100%" [text]="item.Name" ></Label>
+                </StackLayout>
+            </ng-template>
+        </ListView>
+    </TabContentItem>
+</Tabs>
+</Page>

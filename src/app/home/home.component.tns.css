@@ -1,0 +1,23 @@
+Tabs TabStripItem,
+BottomNavigation TabStripItem {
+    background-color: #6200EE;
+    color: #B68AF7;
+}
+
+Tabs TabStripItem:active,
+BottomNavigation TabStripItem:active {
+    color: #FFFFFF;
+}
+
+  .urgent {
+    color:maroon,
+  }
+  .hight {
+      color:chocolate,
+  }
+  .normal {
+      color:black,
+  }
+  .low {
+      color:green,
+  }

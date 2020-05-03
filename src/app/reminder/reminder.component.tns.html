@@ -1,0 +1,25 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" loaded="pageLoaded"
+      xmlns:datetime="nativescript-datetimepicker">      
+      <StackLayout  width="95%" height="50%">
+            <GridLayout height="20%"   rows="*" columns="*,*,*,*,*,*,*,*,*,*">
+                  <Image src="res://ic_date" (tap)="setDate($event)"  row="0" col="0" ></Image>
+                  <label #lblDate id="lblDate" style="horizontal-align:left;vertical-align:center;" text="Set Date" row="0" col="1"  (tap)="setDate($event)"  colSpan="8"></label>
+                  </GridLayout> 
+            <GridLayout  height="20%"  rows="*" columns="*,*,*,*,*,*,*,*,*,*">
+                  <Image src="res://ic_time" (tap)="setTime($event)"  row="0" col="0" ></Image>
+                  <label #lblTime id="lblTime" style="horizontal-align:left;vertical-align:center;" text="Set Time" row="0" col="1"  (tap)="setTime($event)"  colSpan="8"></label>
+                  <Image src="res://ic_remove" (tap)="removeTime($event)"  row="0" col="9" ></Image>
+              </GridLayout> 
+              <GridLayout   height="20%" rows="*" columns="*,*,*,*,*,*,*,*,*,*">
+                  <Image src="res://ic_reminder" (tap)="setReminder($event)"  row="0" col="0" ></Image>
+                  <label style="horizontal-align:left;vertical-align:center;" text="Set Reminder" row="0" col="1"  (tap)="setReminder($event)"  colSpan="8"></label>
+                  <Image src="res://ic_remove" (tap)="removeReminder($event)"  row="0" col="9" ></Image>
+              </GridLayout> 
+              <GridLayout  height="20%" rows="*" columns="*,*,*,*,*,*,*,*,*,*">
+                  <Image src="res://ic_repeat" (tap)="setRepeat($event)"  row="0" col="0" ></Image>
+                  <label style="horizontal-align:left;vertical-align:center;"  text="Does Not Repeat" (tap)="setRepeat($event)" row="0" col="1" colSpan="8"></label>
+                  <Image src="res://ic_remove" (tap)="removeRepeat($event)"  row="0" col="9" ></Image>
+              </GridLayout> 
+              <Button height="20%" width="100%" (tap)="save($event)" text="Ok"></Button>
+      </StackLayout>     
+</Page>

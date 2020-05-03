@@ -1,0 +1,14 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" loaded="pageLoaded"> 
+      <GridLayout  width="90%" height="80%" rows="*,*,*,*,*,*,*,*,*,*" columns="*">                       
+            <GridLayout style="background-color: lightcoral;" row="0" col="0" rowSpan="2"  rows="*" columns="*,*,*,*">
+                  <TextField #txtName id="txtName" hint="Task Name" row="0" col="0" colSpan="3"></TextField>               
+                  <Image src="res://ic_accept" (tap)="addTask($event)"  row="0" col="4" ></Image>
+              </GridLayout> 
+      <TextView #txtDesc id="txtDesc" rowSpan="7" row="2" col="0"  hint="Description">
+      </TextView>
+      <StackLayout orientation="horizontal" row="9" col="0" style="background-color: lightcoral;">
+            <Image src="res://ic_date" width="50" height="50" (tap)="showReminder($event)"  ></Image>
+            <Image src="res://ic_priority" width="50" height="50" (tap)="showPriority($event)" ></Image>
+      </StackLayout>
+      </GridLayout>
+</Page>

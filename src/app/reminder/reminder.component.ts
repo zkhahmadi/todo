@@ -1,0 +1,11 @@
+import {Component,OnInit} from '@angular/core';
+
+@Component({
+  selector: 'app-reminder-component',
+  templateUrl: 'reminder.component.html',
+  styleUrls: ['reminder.component.css']
+})
+export class ReminderComponent implements OnInit {
+   constructor() {}
+   ngOnInit() { }
+}

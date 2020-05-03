@@ -1,0 +1,17 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "module": "es2015",
+    "moduleResolution": "node",
+    "paths": {
+      "@src/*": [
+        "src/*.tns.ts",
+        "src/*.ts"
+      ]
+    },"emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+  },
+  "files": [
+    "src/main.tns.ts"
+  ]
+}

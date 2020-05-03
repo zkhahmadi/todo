@@ -1,0 +1,17 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" loaded="pageLoaded">      
+      <StackLayout  width="95%" height="50%">   
+            <GridLayout  height="25%"  rows="*" columns="*"  (tap)="selectOption('urgent')">        
+            <label row="0" col="0" className="urgent" style="horizontal-align:center;vertical-align:center;" text="URGENT"   ></label>
+            </GridLayout>
+            <GridLayout  height="25%"  rows="*" columns="*"  (tap)="selectOption('hight')">  
+            <label  row="0" col="0" className="hight" style="horizontal-align:center;vertical-align:center;" text="HIGHT"   ></label>
+             </GridLayout>
+             <GridLayout  height="25%"  rows="*" columns="*"  (tap)="selectOption('normal')">   
+            <label row="0" col="0" className="normal" style="horizontal-align:center;vertical-align:center;" text="NORMAL"    ></label>
+            </GridLayout>
+            <GridLayout  height="25%"  rows="*" columns="*"  (tap)="selectOption('low')">  
+            <label row="0" col="0" className="low"  style="horizontal-align:center;vertical-align:center;" text="LOW" ></label>
+            </GridLayout>
+         
+      </StackLayout>     
+</Page>
