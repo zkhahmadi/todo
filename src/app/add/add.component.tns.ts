@@ -29,7 +29,7 @@ export class AddComponent implements OnInit {
    ngOnInit() { 
     this.mode=this.modalDialogParams.context.mode;
     this.item=this.modalDialogParams.context.item;
-    this.db = new taskdb(); 
+    this.db = new taskdb(this); 
     this.Desc=<TextView>this.Desc1.nativeElement;; 
     this.NameTask=<TextField>this.NameTask1.nativeElement;
     if(this.mode==1){

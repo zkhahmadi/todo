@@ -1,14 +1,16 @@
-import {Couchbase} from 'nativescript-couchbase';
+import {Couchbase,Replicator} from 'nativescript-couchbase-plugin';
 export class dbManager {
 database:Couchbase;
-viewNames=[];      
-constructor(dbname:string);
-constructor(db:dbManager);
-    constructor(db:any) {
+viewNames=[];   
+push:Replicator;   
+constructor(context,dbname:string);
+constructor(context,db:dbManager);
+    constructor(context,db:any) {
         if (db && db instanceof dbManager) {
             this.database = db.database;
         } else if(db) {
             this.database = new Couchbase(db);
+            this.setupSync(context);
         } 
         
     }   
@@ -38,48 +40,51 @@ constructor(db:dbManager);
         return false;
     }
     getView(viewName,whereObject={}) {
-        if(this.
-            database) {
-           if(!this.checkViewExist(viewName,whereObject={})) {
-            this.database.createView(viewName , "1" , function(document , emitter) {
-                var obj =document;
-                if (whereObject) { 
-                     var has=true;
-                    for(var key in whereObject) {
-                      if(obj[key]!==whereObject[key]) {
-                         has=false;
-                      }
-                    }
-                    if (has) {
-                     emitter.emit(...obj);
-                    }               
-                } else {
-                 emitter.emit(...obj); 
-                }           
-            });
-        }       
-    }
+        if(this.database) {}
  }
 
     add(data) {
-        if(this.database){
-      return this.database.createDocument(data);}
+        if (this.database){
+            return this.database.createDocument(data);}
     }
     update(documentId,data) {
-        if(this.database){
-       this.database.updateDocument(documentId,data);}
+        if (this.database){
+            this.database.updateDocument(documentId,data);}
     }
     delete(documentId) {
         if(this.database){
        return this.database.deleteDocument(documentId);}
     }
     getall(viewName , option={}) {
-        if(this.database){
-       return this.database.executeQuery(viewName,option);}
+        if(this.database)
+        {
+            const results = this.database.query({
+                select: [], // Leave empty to query for all
+                from: null, // Omit or set null to use current db
+                where: [],
+                order: []
+              });
+           return results;//this.database.executeQuery(viewName,option);
+        }
     }
-    get(viewName,whereObject,option={}) {
+    get(whereObject) {
         if(this.database) {
-            if(!this.checkViewExist(viewName,whereObject)) {
+            let where=[];
+            for (let key in whereObject) {
+              let k={};
+              k["property"]=key;
+              k["comparison"]="equalTo";
+              k["value"]=whereObject[key];
+              where.push(k);
+            }
+            const results = this.database.query({
+                select: [], // Leave empty to query for all
+                from: null, // Omit or set null to use current db
+                where: where,
+                order: []
+              });
+           return results;
+            /*if(!this.checkViewExist(viewName,whereObject)) {
             this.database.createView(viewName , "1" , function(document , emitter) {
                 var obj = document;
                 if (whereObject) { 
@@ -99,12 +104,31 @@ constructor(db:dbManager);
             return this.database.executeQuery(viewName,option);
         } else {
             return this.database.executeQuery(viewName,option);  
-        } 
+        }*/ 
     }      
     }
-    destroyDatabase(){
+    setupSync(context) {
+         this.push=  this.database.createPushReplication('ws://172.18.160.179:4984/todo/');
+          this.push.setUserNameAndPassword("zkhahmadi","123456");
+          const pull =  this.database.createPullReplication('ws://172.18.160.179:4984/todo/');
+          pull.setUserNameAndPassword("zkhahmadi","123456");           
+           //this.push.setChannels(["Doing","Done"]); 
+           this.push.setContinuous(true); 
+           this.push.start();
+           //pull.setChannels(["Doing","Done"]); 
+           pull.setContinuous(true);
+           pull.start();
+          this.database.addDatabaseChangeListener(function(changes) {
+            context.onChange(changes);  
+            /*for (var i = 0; i < changes.length; i++) {
+              const documentId = changes[i];
+              console.log(documentId);
+            }*/
+          });
+    }
+    destroyDatabase() {
         if(this.database) {
             this.database.destroyDatabase();
-        }
-    }
+        }        
+    }    
 }

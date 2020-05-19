@@ -2,8 +2,8 @@ import {dbManager} from './dbManager.tns';
 export class TaskModel {
 static FieldNames= {
     name:"Name",desc:"Desc",date:"Date",reminder:"Reminder"
-    ,priority:"Priority",status:"Status",_id:"_id",time:"Time",
-    repeat:"Repeat"
+    ,priority:"Priority",status:"Status",_id:"id",time:"Time",
+    repeat:"Repeat",id:"_id"
 };
 static getEmptyObject(){
     var obj={};
@@ -15,49 +15,49 @@ static getEmptyObject(){
     return obj;
 }
 static viewNames= {allTasks:{name:"allTasks",where:{}}};
-static dbName="tasks";
+static dbName="todo";
 static dbManager:dbManager;
 
-static init() {
+static init(context) {
     if (!TaskModel.dbManager) {
-        var manager = new dbManager(TaskModel.dbName);
+        var manager = new dbManager(context,TaskModel.dbName);
         TaskModel.dbManager = manager;
         for(var key in TaskModel.viewNames) {
             TaskModel.dbManager.getView(TaskModel.viewNames[key].name);
         }
     }       
 }
-static add(data) {
+static add(context,data) {
     return new Promise(function(resolve,reject){
-    var manager=new dbManager(TaskModel.dbManager);
+    var manager=new dbManager(context,TaskModel.dbManager);
     resolve(manager.add(data));
    });    
 }
 
 static getAll() {}
 
-static get(where={}) {
+static get(context,where={}) {
     return new Promise(function(resolve,reject){
-        var manager=new dbManager(TaskModel.dbManager);
+        var manager=new dbManager(context,TaskModel.dbManager);
         resolve(manager.get(where));
     });
     
 }
 
-static delete(id){
+static delete(context,id){
     return new Promise(function(resolve,reject){
-    var manager=new dbManager(TaskModel.dbManager);
+    var manager=new dbManager(context,TaskModel.dbManager);
     resolve(manager.delete(id));});
 }
 
-static update(documentId,obj) {
+static update(context,documentId,obj) {
     return new Promise(function(resolve,reject){
-    var manager=new dbManager(TaskModel.dbManager);
+    var manager=new dbManager(context,TaskModel.dbManager);
     resolve(manager.update(documentId,obj));});
 }
-static destroyDatabase(){
+static destroyDatabase(context){
     return new Promise(function(resolve,reject){
-    var manager=new dbManager(TaskModel.dbManager);
+    var manager=new dbManager(context,TaskModel.dbManager);
     resolve(manager.destroyDatabase());});
 }
 }

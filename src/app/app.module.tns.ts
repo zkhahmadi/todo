@@ -6,7 +6,7 @@ import { routes } from "./app.routes";
 import { TNSCheckBoxModule } from '@nstudio/nativescript-checkbox/angular';
 import { AppRoutingModule } from '@src/app/app-routing.module';
 import { AppComponent } from '@src/app/app.component';
-import { HomeComponent } from '@src/app/home/home.component';
+import { HomeComponent } from './home/home.component';
 import { AddComponent } from './add/add.component';
 import { registerElement } from 'nativescript-angular/element-registry';
 import { Fab } from '@nstudio/nativescript-floatingactionbutton';
@@ -14,14 +14,16 @@ import { ModalDialogService } from "nativescript-angular/modal-dialog";
 import { ReminderComponent } from './reminder/reminder.component';
 import { PriorityComponent } from './priority/priority.component';
 import { NativeScriptDateTimePickerModule } from "nativescript-datetimepicker/angular";
-registerElement('Fab', () =>Fab);
+registerElement('Fab',()=>Fab);
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    AddComponent,ReminderComponent,PriorityComponent
+    AddComponent,
+    ReminderComponent,
+    PriorityComponent
   ],
-  imports: [
+  imports:[
     NativeScriptModule,
     AppRoutingModule
     ,NativeScriptRouterModule

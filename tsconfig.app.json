@@ -15,6 +15,12 @@
   },
   "files": [
     "src/main.ts",
-    "src/polyfills.ts"
-  ]
+    "src/polyfills.ts",
+    "node_modules/nativescript-couchbaselite/commons.ts"
+  ],
+  "include": [
+    ".",
+    "../node_modules/@wtw/**/*"
+  ],
 }
+

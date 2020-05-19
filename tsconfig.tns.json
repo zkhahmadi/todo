@@ -12,6 +12,8 @@
     "experimentalDecorators": true,
   },
   "files": [
-    "src/main.tns.ts"
-  ]
+    "src/main.tns.ts",
+  ],"include": [
+    ".",
+  ],
 }

@@ -1,0 +1,48 @@
+fastlane_version '2.131.0'
+
+desc 'test lane'
+lane :test do
+  print "TEST SUCCESSFUL!"
+end
+
+platform :ios do
+
+ desc 'Fetch certificates and provisioning profiles'
+ lane :certificates do
+ end
+
+ desc 'Build the iOS application.'
+ lane :build do
+ end
+
+ desc 'Ship to Testflight.'
+ lane :beta do
+ end
+
+end
+
+platform :android do
+
+desc 'Build the Android application.'
+  lane :build do
+    sh("tns", "build", "android", "--release", "--clean", "--env.production",
+        "--key-store-path", "../certs/test.keystore",
+        "--key-store-password", ENV["123456"],
+        "--key-store-alias", ENV["test"],
+        "--key-store-alias-password", ENV["123456"]
+      )
+end
+
+ desc 'Ship to Playstore Alpha.'
+  lane :alpha do
+    build
+	
+    upload_to_play_store(
+      track: 'alpha',
+      track_promote_to: 'alpha',
+      json_key_data: ENV["PLAYSTORE_JSON_KEY_DATA"],
+      apk: './platforms/android/app/build/outputs/apk/release/app-release.apk'
+    )
+end
+
+end

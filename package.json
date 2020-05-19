@@ -1,7 +1,7 @@
 {
   "name": "todo",
   "nativescript": {
-    "id": "org.nativescript.todo",
+    "id": "org.nephroaid.test",
     "tns-android": {
       "version": "6.5.0"
     }
@@ -17,7 +17,8 @@
     "android": "tns run android",
     "ios": "tns run ios",
     "mobile": "tns run",
-    "preview": "tns preview"
+    "preview": "tns preview",
+    "deploy": "gh-pages -d build"
   },
   "private": true,
   "dependencies": {
@@ -34,15 +35,17 @@
     "@nstudio/nativescript-checkbox": "^1.0.0",
     "@nstudio/nativescript-floatingactionbutton": "^2.0.0",
     "core-js": "^2.6.9",
+    "fastlane": "^0.1.0",
     "leveldown": "^5.6.0",
     "nativescript-angular": "~8.20.0",
-    "nativescript-couchbase": "^1.0.18",
+    "nativescript-couchbase-plugin": "^0.9.6",
     "nativescript-datetimepicker": "^1.2.2",
     "nativescript-floatingactionbutton": "^5.1.0",
     "nativescript-material-datetimepicker": "^1.0.9",
     "pouchdb": "^7.2.1",
     "pouchdb-adapter-localstorage": "^7.2.1",
     "pouchdb-adapter-memory": "^7.2.1",
+    "pouchdb-authentication": "^1.1.3",
     "reflect-metadata": "~0.1.12",
     "rxjs": "~6.4.0",
     "tns-core-modules": "~6.3.0",
