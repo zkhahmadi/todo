@@ -5,7 +5,7 @@ import { NativeScriptFormsModule } from "nativescript-angular/forms";
 import { routes } from "./app.routes";
 import { TNSCheckBoxModule } from '@nstudio/nativescript-checkbox/angular';
 import { AppRoutingModule } from '@src/app/app-routing.module';
-import { AppComponent } from '@src/app/app.component';
+import { AppComponent } from './appcomp/app.component';
 import { HomeComponent } from './home/home.component';
 import { AddComponent } from './add/add.component';
 import { registerElement } from 'nativescript-angular/element-registry';
