@@ -1,7 +1,7 @@
 import {taskdb} from '../db/task';
 import { Component, OnInit,OnDestroy,ViewContainerRef, ViewChild, ElementRef} from '@angular/core';
 import { Page } from 'tns-core-modules/ui/page';
-import { TaskModel } from '../db/taskModel';
+import { TaskModel } from '../db/taskModel.tns';
 import { ReminderComponent } from '../reminder/reminder.component';
 import { PriorityComponent } from '../priority/priority.component';
 var dialogs = require("tns-core-modules/ui/dialogs");

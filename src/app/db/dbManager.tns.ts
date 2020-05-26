@@ -10,7 +10,7 @@ constructor(context,db:dbManager);
             this.database = db.database;
         } else if(db) {
             this.database = new Couchbase(db);
-            this.setupSync(context);
+           // this.setupSync(context);
         } 
         
     }   

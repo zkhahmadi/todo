@@ -1,6 +1,6 @@
 import { Component, OnInit,OnDestroy, ViewChild, ElementRef} from '@angular/core';
 import { Label } from "tns-core-modules/ui/label";
-import { TaskModel } from '../db/taskModel';
+import { TaskModel } from '../db/taskModel.tns';
 import { ModalDialogService, ModalDialogOptions,ModalDialogParams} from "nativescript-angular/modal-dialog";
 import { DateTimePicker ,DatePickerOptions,TimePickerOptions} from "nativescript-datetimepicker";
 @Component({

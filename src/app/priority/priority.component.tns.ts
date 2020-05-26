@@ -1,7 +1,7 @@
 import {taskdb} from '../db/task';
 import { Component, OnInit,OnDestroy} from '@angular/core';
 import { Page } from 'tns-core-modules/ui/page';
-import { TaskModel } from '../db/taskModel';
+import { TaskModel } from '../db/taskModel.tns';
 import { ModalDialogService, ModalDialogOptions,ModalDialogParams} from "nativescript-angular/modal-dialog";
 @Component({
   selector: 'app-priority-component',

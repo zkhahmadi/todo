@@ -2,7 +2,7 @@ import {taskdb} from '../db/task';
 import {ListenToDb} from "../interfaces/dbinterface"
 import { Component, OnInit,OnDestroy,ViewContainerRef} from '@angular/core';
 import { Page } from 'tns-core-modules/ui/page';
-import { TaskModel } from '../db/taskModel';
+import { TaskModel } from '../db/taskModel.tns';
 import { AddComponent } from '../add/add.component';
 import { ModalDialogService, ModalDialogOptions } from "nativescript-angular/modal-dialog";
 var observable = require('tns-core-modules/data/observable');

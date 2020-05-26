@@ -1,4 +1,4 @@
-import {TaskModel} from './taskModel';
+import {TaskModel} from './taskModel.tns';
 export class taskdb {
     constructor(context) {
         TaskModel.init(context);
