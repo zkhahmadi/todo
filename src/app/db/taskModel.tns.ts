@@ -17,7 +17,6 @@ static getEmptyObject(){
 static viewNames= {allTasks:{name:"allTasks",where:{}}};
 static dbName="todo";
 static dbManager:dbManager;
-
 static init(context) {
     if (!TaskModel.dbManager) {
         var manager = new dbManager(context,TaskModel.dbName);
@@ -33,29 +32,24 @@ static add(context,data) {
     resolve(manager.add(data));
    });    
 }
-
 static getAll() {}
-
 static get(context,where={}) {
     return new Promise(function(resolve,reject){
         var manager=new dbManager(context,TaskModel.dbManager);
         resolve(manager.get(where));
-    });
-    
+    });    
 }
-
-static delete(context,id){
+static delete(context,id) {
     return new Promise(function(resolve,reject){
     var manager=new dbManager(context,TaskModel.dbManager);
     resolve(manager.delete(id));});
 }
-
 static update(context,documentId,obj) {
     return new Promise(function(resolve,reject){
     var manager=new dbManager(context,TaskModel.dbManager);
     resolve(manager.update(documentId,obj));});
 }
-static destroyDatabase(context){
+static destroyDatabase(context) {
     return new Promise(function(resolve,reject){
     var manager=new dbManager(context,TaskModel.dbManager);
     resolve(manager.destroyDatabase());});

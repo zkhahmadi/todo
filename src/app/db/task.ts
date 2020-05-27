@@ -26,7 +26,7 @@ export class taskdb {
                return {context:context,data:data}; 
             });     
     } 
-    addTask(context,newobj) {   
+  addTask(context,newobj) {   
           newobj[TaskModel.FieldNames.status]=false;      
           return   TaskModel.add(context,newobj).then(id=>{
             newobj[TaskModel.FieldNames._id]=id;
@@ -37,7 +37,7 @@ export class taskdb {
     return   TaskModel.update(context,newobj[TaskModel.FieldNames._id],newobj).then((result)=>{
       return {context:context,data:newobj};
     }); 
-} 
+  } 
     deleteItem(context,item) {       
       return  TaskModel.delete(context,item[TaskModel.FieldNames._id]).then(()=>{
         return "";
@@ -60,7 +60,7 @@ export class taskdb {
              return {data:result,context:context};  
          });  
   }
-  destroyDatabase(context){
+  destroyDatabase(context) {
     TaskModel.destroyDatabase(context);
   }
 }

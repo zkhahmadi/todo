@@ -10,7 +10,7 @@ constructor(context,db:dbManager);
             this.database = db.database;
         } else if(db) {
             this.database = new Couchbase(db);
-           // this.setupSync(context);
+            this.setupSync(context);
         } 
         
     }   
@@ -112,10 +112,10 @@ constructor(context,db:dbManager);
           this.push.setUserNameAndPassword("zkhahmadi","123456");
           const pull =  this.database.createPullReplication('ws://172.18.160.179:4984/todo/');
           pull.setUserNameAndPassword("zkhahmadi","123456");           
-           //this.push.setChannels(["Doing","Done"]); 
+           this.push.setChannels(["Doing","Done"]); 
            this.push.setContinuous(true); 
            this.push.start();
-           //pull.setChannels(["Doing","Done"]); 
+           pull.setChannels(["Doing","Done"]); 
            pull.setContinuous(true);
            pull.start();
           this.database.addDatabaseChangeListener(function(changes) {
