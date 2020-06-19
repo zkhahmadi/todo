@@ -29,24 +29,26 @@ export class AddComponent implements OnInit {
      constructor(private pageRoute: PageRoute,private page:Page
     ,private modalService:ModalDialogService,private viewContainerRef:ViewContainerRef
     ,private modalDialogParams: ModalDialogParams) {}
-   ngOnInit() { 
+   ngOnInit()
+    { 
     this.mode=this.modalDialogParams.context.mode;
     this.item=this.modalDialogParams.context.item;
     this.db = new taskdb(this); 
-    this.Desc=<TextView>this.Desc1.nativeElement;; 
+    this.Desc=<TextView>this.Desc1.nativeElement;
     this.NameTask=<TextField>this.NameTask1.nativeElement;
     if(this.mode==1){
       this.newObject=this.modalDialogParams.context.item;
       this.NameTask.text=this.item[TaskModel.FieldNames.name];
       this.Desc.text=this.item[TaskModel.FieldNames.desc];
-        } else {
+        } else 
+        {
       this.newObject=TaskModel.getEmptyObject();
     }    
    }
    addTask(event) {
     if (this.NameTask.text &&  this.mode==0){
-      this.newObject[TaskModel.FieldNames.name]=this.NameTask.text;
-      this.newObject[TaskModel.FieldNames.desc]=this.Desc.text;
+      this.newObject [TaskModel.FieldNames.name]=this.NameTask.text;
+      this.newObject [TaskModel.FieldNames.desc]=this.Desc.text;
       this.db.addTask(this , this.newObject ).then(function(result:{context , data}) {      
         result.context.modalDialogParams.closeCallback({data:result.data,context:result.context.modalDialogParams.context}); 
   });      
