@@ -5,8 +5,11 @@ import { TaskModel } from '../db/taskModel.tns';
 import { ReminderComponent } from '../reminder/reminder.component';
 import { PriorityComponent } from '../priority/priority.component';
 var dialogs = require("tns-core-modules/ui/dialogs");
+
 import { TextView, TextField} from "tns-core-modules/ui";
+
 import { RouterExtensions, PageRoute } from "nativescript-angular/router";
+
 import { ModalDialogService, ModalDialogOptions,ModalDialogParams } from "nativescript-angular/modal-dialog";
 @Component({
   selector: 'app-add-component',
@@ -41,7 +44,7 @@ export class AddComponent implements OnInit {
     }    
    }
    addTask(event) {
-    if(this.NameTask.text &&  this.mode==0){
+    if (this.NameTask.text &&  this.mode==0){
       this.newObject[TaskModel.FieldNames.name]=this.NameTask.text;
       this.newObject[TaskModel.FieldNames.desc]=this.Desc.text;
       this.db.addTask(this , this.newObject ).then(function(result:{context , data}) {      
