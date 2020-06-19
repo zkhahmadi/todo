@@ -54,7 +54,7 @@ export class AddComponent implements OnInit {
   });      
     }
     else if(this.NameTask.text &&  this.mode==1){
-      this.newObject[TaskModel.FieldNames.name]=this.NameTask.text;;;;;;
+      this.newObject[TaskModel.FieldNames.name]=this.NameTask.text;
       this.newObject[TaskModel.FieldNames.desc]=this.Desc.text;
       this.db.updateTask(this , this.newObject ).then(function(result:{context , data}) {      
       result.context.modalDialogParams.closeCallback({data:result.data,context:result.context.modalDialogParams.context});   
